@@ -1,19 +1,21 @@
-<div>
-    <% if (current_user) { %>
-        <p><strong>name:</strong> <%= current_user.firstname %> <%= current_user.lastname %></p>
-        <p><strong>email:</strong> <%= current_user.email %></p>
-        <p><strong>username:</strong> <%= current_user.username %></p>
-    <% } %>
-</div>
+<h1 style="text-align: center;">Welcome to WebChat Application</h1>
 
-<div class="buttons mt-3">
-    <% if (current_user) { %>
-        <a class="btn btn-link-2" href="/logout"> <i class="fa fa-sign-out msg-botton-icon" aria-hidden="true"></i> </a>
+<% if (current_user) { %>
+    <div class="jumbotron">
+        <h1 class="display-4">
+            <%= current_user.firstname %>
+                <%= current_user.lastname %>
+        </h1>
+        <hr class="my-4">
+        <p>
+            <%= current_user.email %>
+        </p>
+        <a class="btn btn-light" href="/msg"> <i class="fa fa-comments msg-botton-icon" aria-hidden="true"> Chat </i></a>
+        <a class="btn btn-light" href="/logout"> <i class="fa fa-sign-out msg-botton-icon" aria-hidden="true"></i> </a>
+    </div>
     <% } else { %>
-        <a class="btn btn-link-2" href="/auth/google"> <img src="/images/google-logo.png"> </a>
-    <% } %>
-</div>
-
-<div class="buttons mt-3">
-    <a class="btn btn-link-2" href="/msg"> <i class="fa fa-comments msg-botton-icon" aria-hidden="true"></i> </a>
-</div>
+        <div class="btn-group-vertical mx-auto">
+            <a class=" btn btn-light mt-3 " href="/auth/google "> <img src="/images/google-logo.png " style="height: 30px; "> Login with Google </a>
+            <a class="btn btn-light mt-3 " href="/msg "> <i class="fa fa-comments msg-botton-icon " aria-hidden="true "> Chat </i></a>
+        </div>
+        <% } %>

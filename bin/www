@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('chat-app-final:server');
+var debug = require('debug')('web_chat_application:server');
 var http = require('http');
 
 /**
