@@ -11,7 +11,7 @@ if (window.location.pathname === '/msg') {
    *  */
   socket.on('user_connect', async (user) => {
     // update view
-    online_user_container[0].innerHTML += USER_ELEMENT(user);
+    // online_user_container[0].innerHTML += USER_ELEMENT(user);
   });
 
   /**
@@ -32,6 +32,9 @@ if (window.location.pathname === '/msg') {
         middleMain.lastChild.remove();
         middleMain.innerHTML += INFO('message could not be sent try again!!!');
       }
+
+      var elem = document.getElementById('middle-msg-container');
+      elem.scrollTop = elem.scrollHeight;
     });
   });
 
@@ -43,6 +46,9 @@ if (window.location.pathname === '/msg') {
    */
   socket.on('DELIVER_MSG', (MSG) => {
     middleMain.innerHTML += SENT_MSG(MSG);
+
+    var elem = document.getElementById('middle-msg-container');
+    elem.scrollTop = elem.scrollHeight;
   });
 
   
@@ -55,4 +61,21 @@ if (window.location.pathname === '/msg') {
     // update views
     $(`#${user_id}`).parent().remove();
   });
+
+  // File Sharing
+  // socket.on('base64 file', function (msg) {
+  //   console.log('received base64 file from' + msg.username);
+  //   socket.username = msg.username;
+  //   // socket.broadcast.emit('base64 image', //exclude sender
+  //   io.sockets.emit('base64 file',  //include sender
+
+  //       {
+  //         username: socket.username,
+  //         file: msg.file,
+  //         fileName: msg.fileName
+  //       }
+
+  //   );
+  // });
+
 }

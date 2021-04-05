@@ -26,26 +26,26 @@ const RECIVED_MSG = (txt) => {
     </div>`;
 };
 
-const USER_ELEMENT = (user) => {
-  return `
-    <div class="users">
-      <img 
-        class="user-img img-fluid" 
-        src="${user.profile_pic_url}" 
-        alt="profile"
-      >
+// const USER_ELEMENT = (user) => {
+//   return `
+//     <div class="users">
+//       <img 
+//         class="user-img img-fluid" 
+//         src="${user.profile_pic_url}" 
+//         alt="profile"
+//       >
 
-      <div class="user-details" id="${user._id}">
-        <div class="user-name">
-          ${user.firstname} ${user.lastname}
-        </div>
-        <div class="user-msg-last">
-          this is last msg..
-        </div>
-        <span class="online-dot"></span>
-      </div>
-    </div>`;
-};
+//       <div class="user-details" id="${user._id}">
+//         <div class="user-name">
+//           ${user.firstname} ${user.lastname}
+//         </div>
+//         <div class="user-msg-last">
+//           this is last msg..
+//         </div>
+//         <span class="online-dot"></span>
+//       </div>
+//     </div>`;
+// };
 
 const SPINNER = `
     <div class="spinner">

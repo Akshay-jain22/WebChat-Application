@@ -58,23 +58,21 @@
 }
 
 .msg-left-container,
-.msg-middle-container,
-.msg-right-container {
+.msg-right-container{
   width: 100%;
   height: 100vh;
   overflow-y: auto;
 }
 
-.msg-left-container,
-.msg-right-container {
+.msg-left-container{
   background-color: var(--app-background);
 }
 
-.msg-middle-container {
+.msg-right-container {
   background-color: var(--background-default);
   border-left: 1px solid var(--border-default);
   border-right: 1px solid var(--border-default);
-  background-image: url(/images/2224368.png);
+  background-image: url(../images/2224368.png);
 }
 
 

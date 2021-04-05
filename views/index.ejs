@@ -1,9 +1,10 @@
 <h1 style="text-align: center;">Welcome to WebChat Application</h1>
 
-<% if (current_user) { %>
-    <div class="jumbotron">
-        <h1 class="display-4">
-            <%= current_user.firstname %>
+<div class="container">
+    <% if (current_user) { %>
+        <div class="jumbotron">
+            <h1 class="display-4">
+                <%= current_user.firstname %>
                 <%= current_user.lastname %>
         </h1>
         <hr class="my-4">
@@ -19,3 +20,4 @@
             <a class="btn btn-light mt-3 " href="/msg "> <i class="fa fa-comments msg-botton-icon " aria-hidden="true "> Chat </i></a>
         </div>
         <% } %>
+</div>
