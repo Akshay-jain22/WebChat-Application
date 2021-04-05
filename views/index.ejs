@@ -11,11 +11,15 @@
             <%= current_user.email %>
         </p>
         <a class="btn btn-light" href="/msg"> <i class="fa fa-comments msg-botton-icon" aria-hidden="true"> Chat </i></a>
+        <a class="reg" href="/game" style="text-align: center;"><img src="/images/game_icon.svg" alt="" width="3%" height="2%"></a>
         <a class="btn btn-light" href="/logout"> <i class="fa fa-sign-out msg-botton-icon" aria-hidden="true"></i> </a>
+        
+        
     </div>
     <% } else { %>
         <div class="btn-group-vertical mx-auto">
             <a class=" btn btn-light mt-3 " href="/auth/google "> <img src="/images/google-logo.png " style="height: 30px; "> Login with Google </a>
             <a class="btn btn-light mt-3 " href="/msg "> <i class="fa fa-comments msg-botton-icon " aria-hidden="true "> Chat </i></a>
+            <a class="reg" href="/msg" style="text-align: center;"><img src="/images/game_icon.svg" alt="" width="55%" height="55%"></a>
         </div>
         <% } %>
