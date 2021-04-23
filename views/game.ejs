@@ -2,59 +2,50 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Two Player Snake Game</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/5506f7f00f.js" crossorigin="anonymous"></script>
-  <style>
-    #gameScreen {
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5506f7f00f.js" crossorigin="anonymous"></script>
+    <style>
+        #gameScreen {
+            display: none;
+        }
+    </style>
 </head>
 
 <body style="background-color: rgb(233, 220, 220);">
-  <section 
-    style="margin: 0px 15%; border-radius: 3%; background-color: rgb(207, 123, 63); height: 90vh;">
-    <div class="container h-100">
-
-      <div id="initialScreen" class="h-100">
-        <div class="d-flex flex-column align-items-center justify-content-center h-100">
-          <h1 style="color: rgb(58, 58, 182);">Two Player Snake Game</h1>
-          </br>
-          <button type="submit" class="btn btn-success" id="newGameButton">
-            Create New Game
-          </button>
-          <div>or</div>
-          <div class="form-group">
-            <input type="text" placeholder="Enter Game Code" id="gameCodeInput" />
-          </div>
-          <button type="submit" class="btn btn-success" id="joinGameButton">
-            Join Game
-          </button>
-          </br>
-          <div>
-            <a class="btn btn-light" href="/logout"><i class="fa fa-sign-out msg-botton-icon"
-                aria-hidden="true"></i>LogOut</a>
-          </div>
+    <div class="container">
+        <div id="initialScreen" class="shadow p-3 mb-5 bg-white rounded">
+            <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                <h1 style="color: rgb(58, 58, 182);">Two Player Snake Game</h1>
+                </br>
+                <button type="submit" class="btn btn-success" id="newGameButton">Create New Game</button>
+                <br>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="gameCodeInput" placeholder="Enter Game Code" aria-label="" aria-describedby="" width="5px">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-success" type="submit" id="joinGameButton">Join Game</button>
+                    </div>
+                </div>
+                </br>
+                <div>
+                    <a class="btn btn-outline-dark" href="/"> Back </a>
+                    <a class="btn btn-outline-dark" href="/logout"> Logout </a>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div id="gameScreen" class="h-100">
-        <div class="d-flex flex-column align-items-center justify-content-center h-100">
+        <div id="gameScreen">
+            <div class="d-flex flex-column align-items-center justify-content-center">
 
-          <h1>Game Code is: <span id="gameCodeDisplay"></span></h1>
+                <h1>Game Code is: <span id="gameCodeDisplay"></span></h1>
 
-          <canvas id="canvas"></canvas>
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
-      </div>
-
     </div>
-  </section>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-  <script src="/javascripts/game.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="/javascripts/game.js"></script>
 </body>
 
 </html>

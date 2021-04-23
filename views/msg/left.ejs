@@ -6,8 +6,14 @@
 
     <div class="user-details current_user" id="<%= current_user._id %>" style="margin: 0 auto;">
         <div class="user-name">
-            <strong><%= current_user.firstname %> <%= current_user.lastname %></strong>
-            <strong><%= current_user.email %></strong>
+            <strong>
+                <%= current_user.firstname %>
+                    <%= current_user.lastname %>
+            </strong>
+            <br>
+            <strong>
+                <%= current_user.email %>
+            </strong>
         </div>
     </div>
 </div>
@@ -15,14 +21,16 @@
 <br>
 
 <div class="text-center">
-    <a class="btn btn-light" href="/logout"> Logout <i class="fa fa-sign-out msg-botton-icon" aria-hidden="true"></i> </a>
+    <a class="btn btn-light" href="/logout"> Logout <i class="fa fa-sign-out msg-botton-icon" aria-hidden="true"></i>
+    </a>
+    <a class="btn btn-light" href="/"> Back </a>
 </div>
 
 <br>
 <br>
 
 <div class="online-user-container">
-    <% connections.forEach((value, index, array) => { %>
+    <% connections.forEach((value, index, array)=> { %>
         <div class="users">
             <img class="user-img img-fluid" src="<%= value.user_id.profile_pic_url%>" alt="profile">
 
