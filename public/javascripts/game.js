@@ -2,7 +2,7 @@ const BG_COLOUR = '#000000';
 const SNAKE_COLOUR = '#f5f12a';
 const FOOD_COLOUR = '#228B22';
 
-const socket = io('https://sleepy-island-33889.herokuapp.com/');
+const socket = io('https://sleepy-island-33889.herokuapp.com/', { transports: ['websocket', 'polling', 'flashsocket'] });
 
 socket.on('init', handleInit);
 socket.on('gameState', handleGameState);
@@ -23,14 +23,19 @@ joinGameBtn.addEventListener('click', joinGame);
 
 
 function newGame() {
-  socket.emit('newGame');
-  init();
+    socket.emit('newGame');
+    init();
 }
 
 function joinGame() {
-  const code = gameCodeInput.value;
-  socket.emit('joinGame', code);
-  init();
+    const code = gameCodeInput.value;
+    if (code === "") {
+        alert("Empty Game Code");
+        return;
+    }
+
+    socket.emit('joinGame', code);
+    init();
 }
 
 let canvas, ctx;
@@ -38,128 +43,117 @@ let playerNumber;
 let gameActive = false;
 
 function init() {
-  initialScreen.style.display = "none";
-  gameScreen.style.display = "block";
+    initialScreen.style.display = "none";
+    gameScreen.style.display = "block";
 
-  canvas = document.getElementById('canvas');
-  ctx = canvas.getContext('2d');
-  canvas.width = 600;
-  canvas.height = 600;
-  
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+    canvas.width = 600;
+    canvas.height = 600;
 
-  ctx.fillStyle = BG_COLOUR;
-  //drawGrid(600, 600, "canvas");
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  document.addEventListener('keydown', keydown);
-  gameActive = true;
+    ctx.fillStyle = BG_COLOUR;
+    //drawGrid(600, 600, "canvas");
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    document.addEventListener('keydown', keydown);
+    gameActive = true;
 }
 
 function keydown(e) {
-  socket.emit('keydown', e.keyCode);
+    socket.emit('keydown', e.keyCode);
 }
 
 function paintGame(state) {
 
-  // ctx.fillStyle = BG_COLOUR;
-  // ctx.fillRect(0, 0, canvas.width, canvas.height);
-  var drawGrid = function(w, h, id) {
-    canvas = document.getElementById(id);
-    ctx = canvas.getContext('2d');
-    ctx.canvas.width = w;
-    ctx.canvas.height = h;
-    for (x = 0; x <= w; x += 30) {
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, h);
-        for (y = 0; y <= h; y += 30) {
-            ctx.moveTo(0, y);
-            ctx.lineTo(w, y);
+    // ctx.fillStyle = BG_COLOUR;
+    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+    var drawGrid = function(w, h, id) {
+        canvas = document.getElementById(id);
+        ctx = canvas.getContext('2d');
+        ctx.canvas.width = w;
+        ctx.canvas.height = h;
+        for (x = 0; x <= w; x += 30) {
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+            for (y = 0; y <= h; y += 30) {
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+            }
         }
-    }
-    ctx.stroke();
-};
+        ctx.stroke();
+    };
 
-  drawGrid(600, 600, "canvas");
+    drawGrid(600, 600, "canvas");
 
-  const food = state.food;
-  const gridsize = state.gridsize;
-  const size = canvas.width / gridsize;
+    const food = state.food;
+    const gridsize = state.gridsize;
+    const size = canvas.width / gridsize;
 
-  ctx.fillStyle = FOOD_COLOUR;
-  ctx.fillRect(food.x * size, food.y * size, size, size);
+    ctx.fillStyle = FOOD_COLOUR;
+    ctx.fillRect(food.x * size, food.y * size, size, size);
 
-  paintPlayer(state.players[0], size, SNAKE_COLOUR);
-  paintPlayer(state.players[1], size, 'red');
+    paintPlayer(state.players[0], size, SNAKE_COLOUR);
+    paintPlayer(state.players[1], size, 'red');
 }
 
 function paintPlayer(playerState, size, colour) {
-  const snake = playerState.snake;
+    const snake = playerState.snake;
 
-  ctx.fillStyle = colour;
-  for (let cell of snake) {
-    ctx.fillRect(cell.x * size, cell.y * size, size, size);
-  }
-  ctx.fillStyle = '#000000';
-  let s = snake.length;
-  let cell = snake[s-1];
-  ctx.fillRect(cell.x * size + 10 , cell.y * size + 10 , 6, 6);
-  // for (let cell of snake) {
-  //   ctx.fillRect(cell.x * size + 10 , cell.y * size + 10 , 4, 4);
-  //   break;
-  // }
-  // for(let i=snake.length-1;i>=0;i--)
-  // {
-  //   ctx.fillStyle = (i==0) ? "blue":"white";
-  //   ctx.fillRect(snake[i].x * size ,snake[i].y * size,size,size);
-  //   ctx.strokeStyle="red";
-  //   ctx.strokeRect(snake[i].x * size ,snake[i].y * size,size,size);
-  // }
+    ctx.fillStyle = colour;
+    for (let cell of snake) {
+        ctx.fillRect(cell.x * size, cell.y * size, size, size);
+    }
+    ctx.fillStyle = '#000000';
+    let s = snake.length;
+    let cell = snake[s - 1];
+    ctx.fillRect(cell.x * size + 10, cell.y * size + 10, 6, 6);
 }
 
 function handleInit(number) {
-  playerNumber = number;
+    playerNumber = number;
 }
 
 function handleGameState(gameState) {
-  if (!gameActive) {
-    return;
-  }
-  gameState = JSON.parse(gameState);
-  requestAnimationFrame(() => paintGame(gameState));
+    if (!gameActive) {
+        return;
+    }
+    gameState = JSON.parse(gameState);
+    requestAnimationFrame(() => paintGame(gameState));
 }
 
 function handleGameOver(data) {
-  if (!gameActive) {
-    return;
-  }
-  data = JSON.parse(data);
+    if (!gameActive) {
+        return;
+    }
+    data = JSON.parse(data);
 
-  gameActive = false;
+    gameActive = false;
 
-  if (data.winner === playerNumber) {
-    alert('You Win!');
-  } else {
-    alert('You Lose :(');
-  }
+    if (data.winner === playerNumber) {
+        alert('You Win!');
+    } else {
+        alert('You Lose :(');
+    }
 }
 
 function handleGameCode(gameCode) {
-  gameCodeDisplay.innerText = gameCode;
+    gameCodeDisplay.innerText = gameCode;
 }
 
 function handleUnknownCode() {
-  reset();
-  alert('Unknown Game Code')
+    reset();
+    alert('Unknown Game Code')
 }
 
 function handleTooManyPlayers() {
-  reset();
-  alert('This game is already in progress');
+    reset();
+    alert('This game is already in progress');
 }
 
 function reset() {
-  playerNumber = null;
-  gameCodeInput.value = '';
-  initialScreen.style.display = "block";
-  gameScreen.style.display = "none";
+    playerNumber = null;
+    gameCodeInput.value = '';
+    initialScreen.style.display = "block";
+    gameScreen.style.display = "none";
 }
