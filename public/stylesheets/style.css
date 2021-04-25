@@ -41,12 +41,12 @@
     background: rgba(194, 194, 194, 0.151);
 }
 
-.msg-botton-icon:hover {
+.msg-button-icon:hover {
     color: #36475a;
     transition: 0.3s;
 }
 
-.msg-botton-icon {
+.msg-button-icon {
     font-size: 30px;
     color: #1f3349;
 }
