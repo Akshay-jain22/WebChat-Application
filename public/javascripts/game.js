@@ -17,6 +17,7 @@ const newGameBtn = document.getElementById('newGameButton');
 const joinGameBtn = document.getElementById('joinGameButton');
 const gameCodeInput = document.getElementById('gameCodeInput');
 const gameCodeDisplay = document.getElementById('gameCodeDisplay');
+const codeText = document.getElementById("codeText");
 
 newGameBtn.addEventListener('click', newGame);
 joinGameBtn.addEventListener('click', joinGame);
@@ -35,6 +36,7 @@ function joinGame() {
     }
 
     socket.emit('joinGame', code);
+    codeText.innerHTML = "Snake Game";
     init();
 }
 
@@ -65,7 +67,6 @@ function keydown(e) {
 }
 
 function paintGame(state) {
-
     // ctx.fillStyle = BG_COLOUR;
     // ctx.fillRect(0, 0, canvas.width, canvas.height);
     var drawGrid = function(w, h, id) {

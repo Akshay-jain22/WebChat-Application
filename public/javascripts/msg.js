@@ -19,7 +19,7 @@ if (window.location.pathname === '/chat') {
      * new messages
      * need to send user_id whom you wanna send msg
      */
-    $('.msg-send-botton').click(() => {
+    $('.msg-send-button').click(() => {
         const MSG = $('.msg-input').val();
         if (MSG == "")
             return;
