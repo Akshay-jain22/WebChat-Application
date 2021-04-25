@@ -1,0 +1,37 @@
+<div class="container shadow p-3 mb-5 bg-white rounded">
+    <h1 style="text-align: center;">Welcome to WebChat Application</h1>
+    <hr>
+    <% if (current_user) { %>
+        <div class="userDetails" style="margin-left: 5%; color: darkmagenta;">
+            <h2>
+                <%= current_user.firstname %>
+                    <%= current_user.lastname %>
+            </h2>
+            <h5>
+                <%= current_user.email %>
+            </h5>
+        </div>
+
+        <hr class="my-4">
+
+        <div style="text-align: center;">
+            <a class="btn btn-outline-success" href="/chat"> <i class="fa fa-comments msg-button-icon" aria-hidden="true"> Chat </i></a>
+            <br>
+
+            <a class="btn btn-outline-info mt-3" href="/game" style="text-align: center;"> <i class="fa msg-button-icon" aria-hidden="true"><img src="/images/game_icon.svg" alt="" width="15%" height="15%"> Game </i> </a>
+            <br>
+
+            <a class="btn btn-outline-danger mt-3" href="/logout"><i class="fa msg-button-icon" aria-hidden="true"> Logout </i> <i class="fa fa-sign-out msg-button-icon" aria-hidden="true"></i></a>
+        </div>
+        <% } else { %>
+            <div style="text-align: center;">
+                <a class="btn btn-outline-success mt-3" href="/auth/google "> <img src="/images/google-logo.png " style="height: 30px; "> Login with Google </a>
+                <br>
+
+                <a class="btn btn-outline-danger mt-3" href="/chat "> <i class="fa fa-comments msg-button-icon " aria-hidden="true"> Chat </i></a>
+                <br>
+
+                <a class="btn btn-outline-info mt-3" href="/game" style="text-align: center;"> <i class="fa msg-button-icon" aria-hidden="true"><img src="/images/game_icon.svg" alt="" width="15%" height="15%"> Game </i> </a>
+            </div>
+            <% } %>
+</div>
