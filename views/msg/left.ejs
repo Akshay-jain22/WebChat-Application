@@ -21,7 +21,7 @@
 <br>
 
 <div class="text-center">
-    <a class="btn btn-light" href="/logout"> Logout <i class="fa fa-sign-out msg-botton-icon" aria-hidden="true"></i>
+    <a class="btn btn-light" href="/logout"> Logout <i class="fa fa-sign-out msg-button-icon" aria-hidden="true"></i>
     </a>
     <a class="btn btn-light" href="/"> Back </a>
 </div>
@@ -31,7 +31,7 @@
 
 <div class="online-user-container">
     <% connections.forEach((value, index, array)=> { %>
-        <div class="users">
+        <div class="users" style="border: 2px grey solid; margin: 1%">
             <img class="user-img img-fluid" src="<%= value.user_id.profile_pic_url%>" alt="profile">
 
             <div class="user-details" id="<%= value.user_id._id %>">
