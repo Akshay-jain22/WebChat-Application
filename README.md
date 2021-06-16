@@ -1,6 +1,11 @@
 # WebChat-Application
 A Realtime Web Chat Application created using Socket.io and Node.js
 
+### Demo
+
+https://user-images.githubusercontent.com/64270972/122177518-540c1080-cea3-11eb-98b0-2fbfa25268d9.mp4
+
+
 ### RUN LOCALLY
 
 - Clone the Repo:
